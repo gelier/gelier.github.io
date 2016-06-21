@@ -10,21 +10,23 @@ function draw() {
 		bubbles[i].move();
 		bubbles[i].display();
 	}
-//	for (var i=0 ; i<bubbles.length; i++) {
-//		for (var j=0; j<bubbles.length; j++) {
-//			if (i!=j && bubbles[i].intersects(bubbles[j])) {
-//				bubbles[i].speedX = bubbles[i].speedX*-1;
-//				bubbles[i].speedY = bubbles[i].speedY*-1;
-//				//bubbles[j].speedX = bubbles[j].speedX*-1;
-//				//bubbles[j].speedY = bubbles[j].speedY*-1;
-//			}
-//		}
-//	}
+
+	for (var i =0 ; i<bubbles.length; i++) {
+		for (var j=0; j<bubbles.length; j++) {
+			if (i!=j && bubbles[i].intersects(bubbles[j])) {
+				
+				bubbles[i].speedX = bubbles[i].speedX*-1;
+				bubbles[i].speedY = bubbles[i].speedY*-1;
+				//bubbles[j].speedX = bubbles[j].speedX*-1;
+				//bubbles[j].speedY = bubbles[j].speedY*-1;
+			}
+		}
+	}
 }	
 	
 
 //function mousePressed() {
-function mouseDragged() {
+function mousePressed() {
 	//bubbles.push(new Bubble())
 	bubbles.push(new Bubble(mouseX,mouseY))
 }
@@ -57,7 +59,7 @@ function Bubble(x,y) {
 
 	this.intersects = function(other) {
 		var d = dist(this.x,this.y,other.x,other.y)
-		if (d = this.r + other.r) {
+		if (d < this.r + other.r) {
 			return true;
 		} 
 		else {
